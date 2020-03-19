@@ -5,6 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    page_num:0,
+    list:[]
   },
   mutations: {
   },

@@ -7,13 +7,13 @@
                 <li class="location"><div class="location2"></div><div class="location3">{{location}}</div></li>
                 <li class="li bar"><a href="#">前端实验室</a>
                     <ul>
-                        <li class="li" style="width: 200px"><a href="http://www.zhuxf.net/flop/">碧蓝航线翻翻乐</a></li>
-                        <li class="li" style="width: 200px"><a href="http://www.zhuxf.net/visiable/">新冠肺炎疫情图</a></li>
+                        <li class="li" style="width: 200px"><a href="http://111.229.111.185/flop/">碧蓝航线翻翻乐</a></li>
+                        <li class="li" style="width: 200px"><a href="http://111.229.111.185/visiable/">新冠肺炎疫情图</a></li>
                         <li class="li" style="width: 200px"><a href="">3</a></li>
                     </ul>
                 </li>
 
-                <li class="li"><a href="http://www.zhuxf.net/photo">照片墙</a></li>
+                <li class="li"><a href="http://111.229.111.185/photo">照片墙</a></li>
                 <li class="li"><a href="#">项目</a></li>
                 <li class="li"><a href="http://watterson365git.github.io">简历</a></li>
 
@@ -24,11 +24,13 @@
         </div>
         <div class="right">
             <ul>
-                <li class="logandres">
-                    <router-link to="/login" style="display: inline-block;width: 65px;" class="longin">登陆</router-link>
-                    <router-link to="/register" style="display: inline-block;width: 65px;" class="longin">注册</router-link>
+                <li class="logandres" style="width: 200px;">
+                    <a href="/#/login" style="display: inline-block;width: 70px;" class="longin" :class="{showbtn:showbtn}">登陆</a>
+                    <a href="/#/register" style="display: inline-block;width: 70px;" class="register" :class="{showbtn:showbtn}">注册</a>
 <!--                    <a href="http://watterson365git.github.io" style="display: inline-block;width: 65px;" class="longin">登陆</a>-->
 <!--                    <a href="http://watterson365git.github.io" style="display: inline-block;width: 65px;" class="register">注册</a>-->
+                    <span class="user_name" :class="{showbtn:!showbtn}">{{user_name}}<span @click="logout">[退出]</span></span>
+
                 </li>
             </ul>
 
@@ -51,30 +53,70 @@
 </template>
 
 <script>
+    import  {request} from '../../network/iflogin'
+
     import {location} from "../../network/location"
     export default {
 
         data(){
             return{
-                location:'乌鲁木齐市'
+                location:'乌鲁木齐市',
+                user_name:"",
+                showbtn:false,//登陆注册按键消失和出现
+                email:''
             }
         },
         methods:{
             request_location(){
                 location().then(res=>{
-                    // console.log(res.data.city);
                 this.location = res.data.city
-
-
-
                 })
-            }
+            },
+            request_iflogin() {
+               request({
+                    url:'/iflogin'
+                })
+                    .then(result => {
+                        // console.log(result);
+                        if(result.data.email){
+                           //vuex传参
+                            this.email = result.data.email
+                            this.user_name = result.data.email.split("@")[0]
+                            this.showbtn = result.data.showbtn
+                            this.$store.state.page_num = result.data.page_num
+
+                        }else{
+
+                            this.$store.state.page_num = result.data.page_num
+                        }
+
+
+                    })
+            },
+            logout(){
+                request({
+                    url:`users/logout?email=${this.email}`
+                 })
+                    .then(
+                        res=>{
+                            console.log(res);
+                            if(res.data.success===true){
+                                window.location.href="/"
+                            }
+                        }
+                    )
+
+
+            },
+
+
         }
         ,
 
         mounted() {
 
-          // this.request_location()
+          this.request_location();
+          this.request_iflogin();
 
 
         }
@@ -210,7 +252,7 @@
     .navbar  li a{
         text-decoration: none;
         color: #efefef;
-        display: block;
+        display: inline-block;
         text-align: center;
         line-height: 49px;
         font-weight: bold;
@@ -228,7 +270,7 @@
     }
 
     .navbar .pc li:hover ul li{
-        display: block;
+        display: inline-block;
         border-top: 1px solid  rgba(72,219,251,0.5);
     }
 
@@ -247,7 +289,17 @@
         display: none;
     }
 
+.user_name{
+    display: inline-block;
+    position: absolute;
+    left: 5px;
+    z-index: 999;
+    text-indent: 1em;
+}
 
+.showbtn{
+    display: none !important;
+}
     /*@media only screen and (max-width: 970px) {*/
 
     /*    @import url('https://fonts.googleapis.com/css?family=Ma+Shan+Zheng&display=swap');*/

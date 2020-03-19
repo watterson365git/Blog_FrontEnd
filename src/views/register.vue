@@ -4,16 +4,17 @@
             <!--            关闭标志-->
             <a href="/" class="close"><div></div></a>
             <!--            登陆标志-->
-            <a href="/login" class="login"><div>登录 </div></a>
+            <a href="/#/login" class="login"><div>登录</div></a>
 
             <!--            注册标志-->
             <a href="#"  class="register"><div>注册</div></a>
 
 
-            <form action="" method="post" class="form2">
+            <form action="http://111.229.111.185/users/addusers" method="post" class="form2" @submit="onSubmit">
                 <input type="email" placeholder="请输入登录（找回用）邮箱" class="email" name="email">
-                <input type="password" placeholder="请输入登录密码" class="password" name="password">
-                <input type="password" placeholder="请重复登录密码" class="password" name="password">
+                <input type="password" placeholder="请输入登录密码" class="password" name="password"  @input="passwd($event)">
+                <input type="password" placeholder="请重复登录密码" class="password" name="password2"  @input="passwd2($event)">
+                <span class="alerts" :class="{alerts_show:alerts}">两次密码不相同</span>
                 <label  class="lazy"><input type="checkbox" checked="checked"> 同意</label>
                 <a href="#" class="findback">不知名条约(装装样子)</a>
 
@@ -28,7 +29,53 @@
 </template>
 
 <script>
+
     export default {
+        data(){
+            return{
+                pass1:"",
+                pass2:"",
+                alerts:false
+
+
+            }
+        },
+
+        methods:{
+            // findone(event){
+            //     console.log(event.target.value)//失去焦点获取数值
+            //     request ({
+            //         url:`/findone?email=${event.target.value}`,
+            //
+            //     })
+            //         .then(res=>{
+            //             console.log(res);})
+            //         .catch(err=>{
+            //             console.log(err);});
+            // },
+            passwd(event){
+                this.pass1 =event.target.value
+
+            },
+            passwd2(event){
+                this.pass2 =event.target.value
+
+
+            },
+            onSubmit(e){
+
+                if(this.pass1!==this.pass2){
+                    this.alerts =true
+                    e.preventDefault();
+                }else{
+                    this.alerts =false
+                    return true
+                }
+
+            }
+
+
+        }
 
     }
 </script>
@@ -80,7 +127,7 @@
         display: block;
         position: absolute;
         left: 0;
-        top: 190px;
+        top: 200px;
         color:rgb(181,185,188) ;
     }
 
@@ -88,7 +135,7 @@
         display: block;
         position: absolute;
         left: 60px;
-        top: 190px;
+        top: 200px;
         text-decoration: none;
         color: rgb(22, 115, 188);
     }
@@ -107,13 +154,15 @@
         border-radius:9999px;
         font-size: 120%;
         color:#ffffff;
+        outline:none;
+
     }
     .submit:hover{
         display: block;
         position: absolute;
         left: 50%;
         margin-left: -152px;
-        top: 170px;
+        top: 240px;
         width: 304px;
         background-color: #036eff;
         border: 1px solid #036eff;
@@ -196,4 +245,21 @@
     .close:hover{
         background: url("../assets/img/login/close_a.png") round;
     }
+
+    .alerts{
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 170px;
+        font-size: 14px;
+        font-weight: bold;
+        color:red ;
+    }
+
+    .alerts_show{
+        display: block;
+    }
 </style>
+
+
+

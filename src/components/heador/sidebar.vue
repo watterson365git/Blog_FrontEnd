@@ -1,17 +1,33 @@
 <template>
     <div class="sidebar">
         <ul>
-            <li v-for="(item,index) in list">{{item}}</li>
+            <li v-for="(item,index) in list" @click="choose(index)">{{item}}</li>
 
         </ul>
     </div>
 </template>
 
 <script>
+    import {request} from "../../network/iflogin";
+
     export default {
         data(){
             return{
-                list:['Vue','Koa2','Redis','Express','MongoDB','TypeScript']
+                list:['Vue','Nuxt','CSS3','Express','ES6','Mini_Program']
+            }
+        },
+        methods:{
+            choose(index){
+                // console.log(index);
+                // console.log(this.list[index]);
+                request ({
+                  url:`/choose?choose=${this.list[index]}`,
+
+              })
+                  .then(res=>{
+                      this.$store.state.list = res.data
+                      console.log(res);})
+
             }
         }
     }

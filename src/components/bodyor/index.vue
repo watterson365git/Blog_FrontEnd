@@ -1,30 +1,26 @@
 <template>
-    <div>
+    <div style="min-width: 1200px">
         <div class="container">
             <blog></blog>
             <sidebar></sidebar>
         </div>
 
-        <page></page>
     </div>
 </template>
 
 <script>
     import blog from "./blog"
     import sidebar from "./sidebar"
-    import page from "./page"
     export default {
         components:{
             blog,
             sidebar,
-            page
         }
     }
 </script>
 
 <style scoped>
     .container{
-
         width: 1200px;
         position: relative;
         top: 0;

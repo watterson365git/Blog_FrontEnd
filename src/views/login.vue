@@ -7,18 +7,17 @@
             <a href="#" class="login"><div>登录 </div></a>
 
 <!--            注册标志-->
-            <a href="/register"  class="register"><div>注册</div></a>
+            <a href="/#/register"  class="register"><div>注册</div></a>
 
 
-            <form action="" method="post" class="form2">
-                <input type="email" placeholder="请输入登录（找回用）邮箱" class="email" name="email">
-                <input type="password" placeholder="请输入登录密码" class="password" name="password">
-                <label  class="lazy"><input type="checkbox" checked="checked">    7天内免登录</label>
+            <form class="form2" @submit.prevent="submit">
+                <input v-model="email" type="email" placeholder="请输入登录（找回用）邮箱" class="email" @focus="notshow">
+                <input v-model="password" type="password" placeholder="请输入登录密码" class="password" @focus="notshow">
+                <span class="alert" :class="{show:show}">{{alert}}</span>
+                <label v-model="check" class="lazy"><input type="checkbox" checked="checked">    7天内免登录</label>
                 <a href="#" class="findback">找回密码</a>
 
-                <input type="submit" value="登陆" class="submit">
-
-
+                <input type="button" value="登陆" class="submit" @click="checklogin()">
             </form>
         </div>
 
@@ -27,7 +26,54 @@
 </template>
 
 <script>
+import Qs from 'qs'
+import {request} from '../network/iflogin'
     export default {
+        data(){
+            return{
+                email: '',
+                password:'',
+                check:'',
+                show:false,
+                alert:''
+            }
+        },
+        methods:{
+            notshow(){
+                this.show=false
+            },
+
+            checklogin(){
+                var data =  Qs.stringify({
+                    email:this.email,
+                    password: this.password,
+                    check:this.check
+                })
+                request ({
+                    method: 'post',
+                    url:'/users/login',
+                    // data:{
+                    //     email:'watterson365@163.com',
+                    //     password: '123323',
+                    // },
+                   data,
+
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(res=>{
+                    console.log(res);
+                    this.show = res.data.show
+                    this.alert = res.data.alert
+                    if(res.data.success ===true){
+                        window.location.href="/"
+                    }
+
+                })
+            }
+
+        }
 
     }
 </script>
@@ -47,7 +93,7 @@
         left: 50%;
         transform: translate(-50%,-50%);
         background-color: #FFFFFF;
-        height: 350px;
+        height: 368px;
         width: 380px;
         z-index: 10002;
         border-radius: 10px;
@@ -79,7 +125,7 @@
         display: block;
         position: absolute;
         left: 0;
-        top: 130px;
+        top: 150px;
         color:rgb(181,185,188) ;
     }
 
@@ -87,7 +133,7 @@
         display: block;
         position: absolute;
         right: 0;
-        top: 130px;
+        top: 150px;
         text-decoration: none;
         color:rgb(181,185,188) ;
     }
@@ -97,7 +143,7 @@
         position: absolute;
         left: 50%;
         margin-left: -152px;
-        top: 170px;
+        top: 190px;
         width: 304px;
         transition: 0.8s background-color ,border ;
         background-color: #0393ff;
@@ -106,13 +152,16 @@
         border-radius:9999px;
         font-size: 120%;
         color:#ffffff;
+        outline:none;
+        text-align: center;
+
     }
     .submit:hover{
         display: block;
         position: absolute;
         left: 50%;
         margin-left: -152px;
-        top: 170px;
+        top: 190px;
         width: 304px;
         background-color: #036eff;
         border: 1px solid #036eff;
@@ -123,7 +172,16 @@
 
     }
 
+.alert{
+    display: none;
+    position: absolute;
+    top:115px;
+    color:red;
+}
+    .show{
+        display: block;
 
+    }
 
     .login,.register{
         display: block;

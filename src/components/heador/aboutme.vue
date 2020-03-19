@@ -29,7 +29,7 @@
                 </li>
                 <li>
                     <span class="bg"></span>
-                    <a href="https://space.bilibili.com/7545573/video"><span class="font">Bilibili:我刚刚好</span></a>
+                    <a href="https://space.bilibili.com/7545573/video"><span class="font">Bilibili:我肛肛好</span></a>
 <!--                    <div  class="bg"></div>-->
 <!--                    <div class="bilibili">Bilibili:我刚刚好</div>-->
                 </li>
@@ -129,9 +129,7 @@
         width: 20px;
         height: 20px;
         background-color: #FFFFFF;
-        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-
-    }
+             clip-path: polygon(64% 0, 51% 42%, 86% 43%, 39% 100%, 51% 59%, 14% 59%);    }
 
     .list{
         position: absolute;
@@ -143,6 +141,7 @@
     }
 
     .list ul{
+        padding-left: 15px;
         padding-top: 45px;
         margin: 0;
 
@@ -199,6 +198,11 @@
         font-size: 16px;
         color: #00b8ea;
         font-weight: bold;
+        transition: 0.3s color;
+    }
+
+    .font:hover{
+        color: #ea9400;
 
     }
 
@@ -207,7 +211,7 @@
         width: 400px;
         height:400px;
         position: fixed;
-        top: 130px;
+        top: 100px;
         left: 50%;
         margin-left: -200px;
         z-index: 999;
@@ -218,7 +222,7 @@
         width: 400px;
         height:400px;
         position: fixed;
-        top: 130px;
+        top: 100px;
         left: 50%;
         margin-left: -200px;
         z-index: 999;

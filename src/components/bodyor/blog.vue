@@ -1,39 +1,147 @@
 <template>
-    <div>
+    <div class="warp">
 
-        <div v-for="(item,index) in list" :key="index" class="blog">
-            hjgjgjgjgjggjggggggggggggggggggggg{{item}}
-
+        <div v-for="(item,index) in list" :key="index" class="blog" :class="{blogshow:blogshow}">
+            <span class="title">{{item.title}}</span>
+            <div class="pic" :style="{background:'url('+item.pic+')' +'round'}" ></div>
+            <span class="describe">{{item.describe}}</span>
+            <span class="author">{{item.author}}</span>
+            <span class="date">{{item.date}}</span>
+            <span class="kind">【{{item.kind}}】</span>
+            <span class="readmore" @click="readmore(item.article)">阅读详细</span>
         </div>
-        <div class="blog" style="height: 100%">
-            <div  id='write'  class = 'is-node'><h2><a name="本地实时服务器liveserver的安装及使用" class="md-header-anchor"></a><span>本地实时服务器LiveServer的安装及使用</span></h2><p><span>编辑于2020/3/6 星期五  14:36</span></p><p>&nbsp;</p><p><strong><span>在写一下简单的项目或学习一些技术的练习，没有服务器的话，每次写的代码都需要手动刷新浏览器。有点无奈，但是如果你安装了这个</span><code>live-server</code><span>服务器就可以不用手动刷新，实时预览自己写的代码了。</span></strong></p><p><span>live-server是一个具有实时重载功能的小型开发服务器。用它来热加载HTML / JavaScript / CSS文件，但不能用于部署最终的网站系统。</span></p><h3><a name="一）安装" class="md-header-anchor"></a><span>（一）安装</span></h3><p><span>1.合理条件需要node.js和npm的依赖（可以自己先搞定，不难）；</span>
-                <span>2.使用npm分段安装：（</span><code>npm install -g live-server</code><span>本人使用淘宝替代安装的）</span>
-                <img src="https://user-gold-cdn.xitu.io/2018/9/3/1659d0e8391879de?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="安装成功" style="zoom:80%;" /></p><h3><a name="二）使用" class="md-header-anchor"></a><span>（二）使用</span></h3><p><span>1.需要在你使用的项目根目录下启动：（</span><code>liver-server</code><span>本人使用git，在指定目录下右击-&gt; git bash here后使用启动命令即可）</span>
-                <img src="https://user-gold-cdn.xitu.io/2018/9/3/1659d0e839211e8e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" referrerpolicy="no-referrer" alt="启动成功"></p><p><span>2.启动成功，网页自动弹项目目录出来；</span>
-                <img src="https://user-gold-cdn.xitu.io/2018/9/3/1659d0e8394d8f0f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" referrerpolicy="no-referrer" alt="网页"></p><p><span>3.退出该服务器，在命令行使用：</span><code>ctrl+c</code></p><h3><a name="三）简单的配置" class="md-header-anchor"></a><span>（三）简单的配置</span></h3><p><span>1.默认端口号为8080，如果想修改，最简单的方式是启动的时候添加启动参数：</span><code>live-server --port=8081</code><span>即可</span>
-                <img src="https://user-gold-cdn.xitu.io/2018/9/3/1659d0e83968aacf?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" referrerpolicy="no-referrer" alt="修改端口"></p><p><span>\2. </span><code>live-server --参数</code><span>列表</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 12px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--port=NUMBER - select port to use, default: PORT env var or 8080 &nbsp;</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--host=ADDRESS - select host address to bind to, default: IP env var or 0.0.0.0 (“any address”) &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--no-browser - suppress automatic web browser launching &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--browser=BROWSER - specify browser to use instead of system default &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--quiet | -q - suppress logging &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--verbose | -V - more logging (logs all requests, shows all listening IPv4 interfaces, etc.) &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--open=PATH - launch browser to PATH instead of server root &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--watch=PATH - comma-separated string of paths to exclusively watch for changes (default: watch everything) &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--ignore=PATH - comma-separated string of paths to ignore (anymatch-compatible definition) &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--ignorePattern=RGXP - Regular expression of files to ignore (ie .*\.jade) (DEPRECATED in favor of --ignore) &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--middleware=PATH - path to .js file exporting a middleware function to add; can be a name without path nor extension to reference bundled middlewares in middleware folder &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--entry-file=PATH - serve this file (server root relative) in place of missing files (useful for single page apps) &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--mount=ROUTE:PATH - serve the paths contents under the defined route (multiple definitions possible) &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--spa - translate requests from /abc to /#/abc (handy for Single Page Apps) &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--wait=MILLISECONDS - (default 100ms) wait for all changes, before reloading &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--htpasswd=PATH - Enables http-auth expecting htpasswd file located at PATH &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--cors - Enables CORS for any origin (reflects request origin, requests with credentials are supported) &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--https=PATH - PATH to a HTTPS configuration module &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--proxy=ROUTE:URL - proxy all requests for ROUTE to URL &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--help | -h - display terse usage hint and exit &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">--version | -v - display version and exit &nbsp;</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 540px;"></div><div class="CodeMirror-gutters" style="display: none; height: 540px;"></div></div></div></pre><p><span>3.也可以把配置放在package.json的脚本下的服务器中，这样不用每次都命令行使用参数，然后使用命令行启动：（</span><code>npm run server</code><span>如何创建一个带package.json包的项目请看下一步）</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 12px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">"scripts": { &nbsp;</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  "server": "live-server ./ --port=8081" &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">} &nbsp;</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 60px;"></div><div class="CodeMirror-gutters" style="display: none; height: 60px;"></div></div></div></pre><p><span>4.创建一个带package.json包的项目，在项目根目录下使用命令行：</span><code>npm init</code><span>，可以自己设置</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 12px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">package name: (0710) demo</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">version: (1.0.0)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">description: live-server的练习</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">entry point: (index.js)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">test command:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">git repository:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">keywords:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">author: 猿来独往</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">license: (ISC)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">About to write to D:\GitHub_Repository\Clone_Files\vue-study\0710\package.json:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  "name": "demo",</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  "version": "1.0.0",</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  "description": "live-server的练习",</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  "main": "index.js",</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  "scripts": {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  },</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  "author": "猿来独往",</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  "license": "ISC"</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Is this OK? (yes)</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 500px;"></div><div class="CodeMirror-gutters" style="display: none; height: 500px;"></div></div></div></pre><p><span>然后使用第三步的配置，运行该项目就使用：</span><code>npm run server</code>
-                <img src="https://user-gold-cdn.xitu.io/2018/9/3/1659d0e853a5789f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" referrerpolicy="no-referrer" alt="包运行"></p><p><strong><span>注意：如果浏览器不能实时自动刷新页面，可以尝试用这个命令启动（亲测有效）：</span><code>live-server</code></strong></p></div>
+        <button class="goback" :class="{blogshow:!blogshow}" @click="goback" >返回</button>
+        <div class="article" :class="{blogshow:!blogshow}" ref="article">
+
+            </div>
 
 
+        <div class="page":class="{blogshow:blogshow}">
+<!--            <div class="bar">-->
+<!--                <span>我要~我要更多</span>-->
+
+<!--            </div>-->
+            <ul class="page_ul">
+                <li class="page_li" @click="tobegin">首页</li>
+                <li class="page_li" @click="tolast">上一页</li>
+                <li class="page_li">{{pagecount+1}}</li>
+                <li class="page_li">{{pagecount+1}}/{{this.$store.state.page_num}}</li>
+                <li class="page_li" @click="tonext">下一页</li>
+                <li class="page_li"  @click="toend">尾页</li>
+            </ul>
         </div>
-
 
     </div>
 </template>
 
 <script>
+    import  {request} from '../../network/iflogin'
     export default {
         data(){
             return{
-                list:[1,2,3,4,5,6,7,8,999]
+                list:[],
+                pagecount:0,
+                blogshow: false,
+
+
             }
+        },
+        methods:{
+            requestfirst(){
+                request({ url:`/articleget?limit=true&pagecount=${this.pagecount}`}
+                ).then(res=>{
+                    this.list = res.data
+                    // console.log(res);
+                })
+            },
+            readmore(item){
+                this.blogshow = true;
+                this.$refs.article.innerHTML = item
+            },
+            goback(){
+                this.blogshow = false;
+            },
+
+
+            tobegin(){
+                this.pagecount = 0
+                request({ url:`/articleget?limit=true&pagecount=${this.pagecount}`}
+                ).then(res=>{
+                    this.list = res.data
+                    // console.log(res);
+                })
+
+            },
+            tolast(){
+                if(this.pagecount<=0){
+                    alert("没有上一页了哦!!!!!!")
+                }else{
+                    this.pagecount =  this.pagecount -1
+                    request({ url:`/articleget?limit=true&pagecount=${this.pagecount}`}
+                    ).then(res=>{
+                        this.list = res.data
+                        // console.log(res);
+                    })
+                }
+
+
+
+            },
+            tonext(){
+
+                if(this.pagecount+1>=this.$store.state.page_num){
+                    alert("没有下一页了哦!!!!!!")
+                }else{
+                    this.pagecount =  this.pagecount +1
+                    request({ url:`/articleget?limit=true&pagecount=${this.pagecount}`}
+                    ).then(res=>{
+                        this.list = res.data
+                        // console.log(res);
+                    })
+                }
+
+            },
+            toend(){
+                this.pagecount = this.$store.state.page_num-1
+                console.log(this.$store.state.page_num);
+                request({ url:`/articleget?limit=false&pagecount=${this.pagecount}`}//除以每页显示数目
+
+                ).then(res=>{
+                    this.list = res.data
+                    console.log(res);
+                })}
+
+        },
+        computed:{
+            eventChange(){
+                return this.$store.state.list
+            }
+        },
+        watch:{
+            eventChange(val){
+                this.list = this.$store.state.list
+            }
+        }
+        ,
+
+        mounted() {
+
+            this.requestfirst();
+
+
+
         }
     }
 </script>
 
 <style scoped>
     @import "../../assets/blog.css";
-
+    .warp{
+         min-height: 380px;
+        position: relative;
+        top: 0;
+        padding-bottom: 60px;
+        }
     .blog{
         position: relative;
         left: 0;
@@ -44,6 +152,209 @@
         overflow: hidden;
         margin-bottom: 10px;
         background-color: #fff;
+        opacity: 1;
+        transition:1s opacity;
+
+
+    }
+    .article{
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 950px;
+        /*height: 999px;*/
+        box-shadow: 3px 3px 5px rgba(100,100,100,0.6);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        background-color: #ffffff;
+        opacity: 1;
+        transition: opacity 1s;
+
+    }
+    .blogshow{
+        height: 0;
+        opacity: 0;
+        margin-bottom: 0;
+
     }
 
+    .goback{
+        display: inline-block;
+        /*width: 50px;*/
+        /*height: 30px;*/
+        border-radius: 5px;
+        border:rgb(69, 218, 222) solid 1px;
+        font-weight: bold;
+        font-size: 120%;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: rgb(69, 218, 222);
+        z-index: 999;
+        padding: 5px;
+        color: #eeeeee;
+        outline:none;
+
+
+
+    }
+
+    .page{
+        width: 1200px;
+        position: absolute;
+        left: 50%;
+        bottom: 10px;
+        margin-top: 20px;
+        margin-left: -600px;
+
+        height: 40px;
+        /*background-color: #acadff;*/
+        /*box-shadow: 3px 3px 5px rgba(100,100,100,0.6);*/
+        /*border-radius: 10px;*/
+        /*font-weight: bold;*/
+        /*color: #ffffff;*/
+        /*font-size: 130%;*/
+        /*text-align: center;*/
+        /*line-height: 40px;*/
+        /*transition: 0.5s background-color;*/
+    }
+
+
+    .title{
+        display: inline-block;
+        position: absolute;
+        top: 25px;
+        left:20px;
+        height:30px;
+        font-weight: bold;
+        font-size: 150%;
+        color: rgb(51,122,185);
+    }
+.pic{
+    background-color: #d8e8ea;
+    position: absolute;
+    top: 70px;
+    left:30px;
+    height:170px;
+    width: 270px;
+}
+    .describe{
+        font-size: 16px;
+        text-align: left !important;
+        line-height: 30px !important;
+        display: inline-block;
+        position: absolute;
+        top: 50px;
+        left:300px;
+        height:30px;
+        padding:20px;
+    }
+
+    .date{
+        display: inline-block;
+        position: absolute;
+        top: 220px;
+        left:465px;
+        height:30px;
+    }
+    .author {
+        display: inline-block;
+        position: absolute;
+        top: 220px;
+        left:375px;
+        height:30px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .author:before{
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -50px;
+        height: 45px;
+        width: 45px;
+        border: #09c7ff 2px solid;
+
+        background: url("../../assets/img/heador/me.jpg") round;
+        border-radius: 50%;
+        z-index: 999;
+    }
+
+    .kind{
+        display: inline-block;
+        position: absolute;
+        top: 220px;
+        left:535px;
+        height:30px;
+        font-weight: bold;
+        color: rgb(20,155,103);
+    }
+
+    .readmore{
+        display: inline-block;
+        background-color: rgb(0, 166, 222);
+        position: absolute;
+        top: 220px;
+        left:810px;
+        height:30px;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 5px;
+        color: #eeeeee;
+        transition: 0.5s background-color;
+    }
+
+    .readmore:hover{
+        background-color: rgb(0, 135, 222);
+
+
+    }
+
+    .readmore,.kind,.describe,.date,.author{
+        text-align: center;
+        line-height: 30px;
+
+
+    }
+
+    .page_ul{
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
+
+
+    }
+
+    .page_li{
+
+        float: left;
+        margin-right:5px;
+        display: inline-block;
+        list-style: none;
+        background-color: #acadff;
+        box-shadow: 3px 3px 5px rgba(100,100,100,0.6);
+        transition: 0.5s background-color;
+        border-radius: 4px;
+        font-weight: bold;
+        color: #ffffff;
+        text-align: center;
+        line-height: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+
+
+    }
+
+    .page_li:hover{
+        background-color: #7f82ff;
+
+    }
 </style>

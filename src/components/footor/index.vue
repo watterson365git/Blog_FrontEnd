@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div style="min-width: 1200px">
+
         <footi class="footi"></footi>
 
     </div>
@@ -17,6 +18,7 @@
 </script>
 
 <style scoped>
+
     .footi{
         position: relative;
         bottom: 0;

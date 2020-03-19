@@ -32,6 +32,7 @@
 <style scoped>
     .sec_heador{
         position: relative;
+        top: 0;
         width: 1200px;
         height: 380px;
         margin:38px auto;
