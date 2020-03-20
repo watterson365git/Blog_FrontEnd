@@ -66,6 +66,8 @@ import {request} from '../network/iflogin'
                     console.log(res);
                     this.show = res.data.show
                     this.alert = res.data.alert
+                    // console.log(res.data.alert);
+                    // console.log(res.data.show);
                     if(res.data.success ===true){
                         window.location.href="/"
                     }

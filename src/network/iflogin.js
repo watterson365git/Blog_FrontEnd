@@ -20,8 +20,9 @@ import axios from 'axios';
 export function request(config) {
     //创建axios实例
     const instance =axios.create({
-        baseURL:'http://111.229.111.185/',
+        baseURL:'http://www.zhuxf.net/',
         // baseURL:'http://localhost/',
+        // withCredentials: true ,// 允许携带cookie
 
         timeout:5000,
         // withCredentials:true

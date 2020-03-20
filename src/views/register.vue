@@ -10,11 +10,12 @@
             <a href="#"  class="register"><div>注册</div></a>
 
 
-            <form action="http://111.229.111.185/users/addusers" method="post" class="form2" @submit="onSubmit">
-                <input type="email" placeholder="请输入登录（找回用）邮箱" class="email" name="email">
+            <form action="http://zhuxf.net/users/addusers" method="post" class="form2" @submit="onSubmit">
+                <input type="email" placeholder="请输入登录（找回用）邮箱" class="email" name="email" @blur="checkemail($event)">
                 <input type="password" placeholder="请输入登录密码" class="password" name="password"  @input="passwd($event)">
                 <input type="password" placeholder="请重复登录密码" class="password" name="password2"  @input="passwd2($event)">
-                <span class="alerts" :class="{alerts_show:alerts}">两次密码不相同</span>
+                <span class="alerts1" :class="{alerts_show:alerts}">两次密码不相同</span>
+                <span class="alerts2" :class="{checkemailshow:checkemailshow}">{{checkemailname}}用户名已存在</span>
                 <label  class="lazy"><input type="checkbox" checked="checked"> 同意</label>
                 <a href="#" class="findback">不知名条约(装装样子)</a>
 
@@ -29,13 +30,15 @@
 </template>
 
 <script>
-
+    import {request} from '../network/iflogin'
     export default {
         data(){
             return{
                 pass1:"",
                 pass2:"",
-                alerts:false
+                alerts:false,
+                checkemailshow:false,
+                checkemailname:''
 
 
             }
@@ -66,13 +69,27 @@
 
                 if(this.pass1!==this.pass2){
                     this.alerts =true
+
                     e.preventDefault();
+                    return alert("表单存在错误信息!!")
                 }else{
                     this.alerts =false
-                    return true
+
                 }
 
-            }
+            },
+            checkemail(event){
+                request ({
+                    url:`/users/checkemail?checkemail=${event.target.value}`,
+                })
+                  .then(res=>{
+                        // console.log(res);
+                        this.checkemailname = res.data.checkemailname
+                        this.checkemailshow= res.data.checkemailshow
+
+                    })
+
+            },
 
 
         }
@@ -246,18 +263,31 @@
         background: url("../assets/img/login/close_a.png") round;
     }
 
-    .alerts{
+    .alerts1{
+         display: none;
+         position: absolute;
+         left: 0;
+         top: 170px;
+         font-size: 14px;
+         font-weight: bold;
+         color:red ;
+     }
+    .alerts2{
         display: none;
         position: absolute;
-        left: 0;
+        right: 0;
         top: 170px;
         font-size: 14px;
         font-weight: bold;
         color:red ;
     }
-
     .alerts_show{
         display: block;
+    }
+
+    .checkemailshow{
+        display: block;
+
     }
 </style>
 

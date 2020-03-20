@@ -7,13 +7,13 @@
                 <li class="location"><div class="location2"></div><div class="location3">{{location}}</div></li>
                 <li class="li bar"><a href="#">前端实验室</a>
                     <ul>
-                        <li class="li" style="width: 200px"><a href="http://111.229.111.185/flop/">碧蓝航线翻翻乐</a></li>
-                        <li class="li" style="width: 200px"><a href="http://111.229.111.185/visiable/">新冠肺炎疫情图</a></li>
+                        <li class="li" style="width: 200px"><a href="http://www.zhuxf.net/flop/">碧蓝航线翻翻乐</a></li>
+                        <li class="li" style="width: 200px"><a href="http://www.zhuxf.net/visiable/">新冠肺炎疫情图</a></li>
                         <li class="li" style="width: 200px"><a href="">3</a></li>
                     </ul>
                 </li>
 
-                <li class="li"><a href="http://111.229.111.185/photo">照片墙</a></li>
+                <li class="li"><a href="http://www.zhuxf.net/photo">照片墙</a></li>
                 <li class="li"><a href="#">项目</a></li>
                 <li class="li"><a href="http://watterson365git.github.io">简历</a></li>
 
