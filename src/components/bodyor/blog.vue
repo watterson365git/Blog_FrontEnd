@@ -137,7 +137,7 @@
 <style scoped>
     @import "../../assets/blog.css";
     .warp{
-         min-height: 380px;
+         min-height: 670px;
         position: relative;
         top: 0;
         padding-bottom: 60px;
@@ -146,9 +146,9 @@
         position: relative;
         left: 0;
         height: 280px;
-        width: 950px;
+        width: 930px;
         box-shadow: 3px 3px 5px rgba(100,100,100,0.6);
-        border-radius: 10px;
+        border-radius: 4px;
         overflow: hidden;
         margin-bottom: 10px;
         background-color: #fff;
@@ -161,10 +161,10 @@
         position: relative;
         left: 0;
         top: 0;
-        width: 950px;
+        width: 930px;
         /*height: 999px;*/
         box-shadow: 3px 3px 5px rgba(100,100,100,0.6);
-        border-radius: 10px;
+        border-radius: 4px;
         overflow: hidden;
         margin-bottom: 10px;
         background-color: #ffffff;
@@ -255,7 +255,7 @@
         display: inline-block;
         position: absolute;
         top: 220px;
-        left:465px;
+        left:485px;
         height:30px;
     }
     .author {
@@ -272,7 +272,7 @@
         content: "";
         position: absolute;
         top: -15px;
-        left: -50px;
+        left: -60px;
         height: 45px;
         width: 45px;
         border: #09c7ff 2px solid;
@@ -286,7 +286,7 @@
         display: inline-block;
         position: absolute;
         top: 220px;
-        left:535px;
+        left:575px;
         height:30px;
         font-weight: bold;
         color: rgb(20,155,103);
@@ -298,10 +298,11 @@
         position: absolute;
         top: 220px;
         left:810px;
-        height:30px;
+        text-align: center;
+        width: 70px;
         font-weight: bold;
         border-radius: 5px;
-        padding: 5px;
+        /*padding: 5px;*/
         color: #eeeeee;
         transition: 0.5s background-color;
     }

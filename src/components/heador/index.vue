@@ -37,7 +37,7 @@
         height: 380px;
         margin:38px auto;
         box-shadow: 3px 3px 5px rgba(100,100,100,0.6);
-        border-radius: 10px;
+        border-radius: 4px;
         overflow: hidden;
 
     }

@@ -3,6 +3,7 @@
         <div class="container">
             <blog></blog>
             <sidebar></sidebar>
+
         </div>
 
     </div>

@@ -26,7 +26,6 @@
                 clickindex:1,
                 list:[
                     {lable:"1",src:require( "../../assets/img/heador/alone.jpg")},
-                    {lable:"2",src:require( "../../assets/img/heador/road.jpg")},
                     {lable:"3",src:require( "../../assets/img/heador/art.jpg")},
                     {lable:"4",src:require( "../../assets/img/heador/tower.jpg")},
 
