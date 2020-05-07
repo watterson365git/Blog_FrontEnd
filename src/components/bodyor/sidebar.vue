@@ -64,6 +64,9 @@
 </script>
 
 <style scoped>
+    a{
+        text-decoration: none;
+    }
     .tools ul{
         padding: 0;
         margin: 0;
@@ -112,10 +115,9 @@
     .tools li span{
         position: relative;
         display: block;
-        top: -48px;
-        left: 48px;
-
-
+        top: -17px;
+        left: 42px;
+        text-decoration: none;
     }
 .title{
     font-weight: bold;

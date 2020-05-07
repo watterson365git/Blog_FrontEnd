@@ -6,12 +6,12 @@
       </span>
       <br>
       <span>
-        <a href="https://cloud.tencent.com/product/cvm">腾讯云</a>提供静态文件云存储服务-<a href="http://www.cloudxns.net/">CloudXNS</a>提供DNS解析服务
+        <a href="https://cloud.tencent.com/product/cvm">腾讯云</a>提供静态文件云存储服务-DNS解析服务-CDN服务
       </span>
       <br>
 
       <span>
-        前端由 <a href="https://cn.vuejs.org/index.html"> Vue-Cli4</a>支持-后端由 <a href="http://www.expressjs.com.cn/">Express 4.0</a> 支持
+        前端由 <a href="https://cn.vuejs.org/index.html"> Vue</a>支持-后端由 <a href="http://www.expressjs.com.cn/">Express</a> 支持
       </span>
       <br>
       <span>

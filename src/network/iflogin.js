@@ -24,7 +24,7 @@ export function request(config) {
         // baseURL:'http://localhost/',
         // withCredentials: true ,// 允许携带cookie
 
-        timeout:5000,
+        timeout:999000,
         // withCredentials:true
     });
     //发送网络请求

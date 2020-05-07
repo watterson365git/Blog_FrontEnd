@@ -1,7 +1,7 @@
 <template>
     <div class="warp">
 
-        <div v-for="(item,index) in list" :key="index" class="blog" :class="{blogshow:blogshow}">
+        <div v-for="(item,index) in list" :key="index" class="blog">
             <span class="title">{{item.title}}</span>
             <div class="pic" :style="{background:'url('+item.pic+')' +'round'}" ></div>
             <span class="describe">{{item.describe}}</span>
@@ -10,13 +10,13 @@
             <span class="kind">【{{item.kind}}】</span>
             <span class="readmore" @click="readmore(item.article)">阅读详细</span>
         </div>
-        <button class="goback" :class="{blogshow:!blogshow}" @click="goback" >返回</button>
-        <div class="article" :class="{blogshow:!blogshow}" ref="article">
+<!--        <button class="goback" :class="{blogshow:!blogshow}" @click="goback" >返回</button>-->
+<!--        <div class="article" :class="{blogshow:!blogshow}" ref="article">-->
 
-            </div>
+<!--            </div>-->
 
 
-        <div class="page":class="{blogshow:blogshow}">
+<!--        <div class="page":class="{blogshow:blogshow}">-->
 <!--            <div class="bar">-->
 <!--                <span>我要~我要更多</span>-->
 
@@ -41,7 +41,7 @@
             return{
                 list:[],
                 pagecount:0,
-                blogshow: false,
+                // blogshow: false,
 
 
             }
@@ -51,16 +51,20 @@
                 request({ url:`/articleget?limit=true&pagecount=${this.pagecount}`}
                 ).then(res=>{
                     this.list = res.data
-                    // console.log(res);
+                    //console.log(res);
                 })
             },
             readmore(item){
-                this.blogshow = true;
-                this.$refs.article.innerHTML = item
+                // this.blogshow = true;
+                // this.$refs.article.innerHTML = item
+                window.open(item)
+                //console.log("item"+item);
+
+
             },
-            goback(){
-                this.blogshow = false;
-            },
+            // goback(){
+            //     this.blogshow = false;
+            // },
 
 
             tobegin(){
@@ -140,8 +144,8 @@
          min-height: 670px;
         position: relative;
         top: 0;
-        padding-bottom: 60px;
         }
+
     .blog{
         position: relative;
         left: 0;
@@ -161,7 +165,7 @@
         position: relative;
         left: 0;
         top: 0;
-        width: 930px;
+        max-width: 930px;
         /*height: 999px;*/
         box-shadow: 3px 3px 5px rgba(100,100,100,0.6);
         border-radius: 4px;
@@ -172,33 +176,33 @@
         transition: opacity 1s;
 
     }
-    .blogshow{
-        height: 0;
-        opacity: 0;
-        margin-bottom: 0;
+    /*.blogshow{*/
+    /*    height: 0;*/
+    /*    opacity: 0;*/
+    /*    margin-bottom: 0;*/
 
-    }
+    /*}*/
 
-    .goback{
-        display: inline-block;
-        /*width: 50px;*/
-        /*height: 30px;*/
-        border-radius: 5px;
-        border:rgb(69, 218, 222) solid 1px;
-        font-weight: bold;
-        font-size: 120%;
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        background-color: rgb(69, 218, 222);
-        z-index: 999;
-        padding: 5px;
-        color: #eeeeee;
-        outline:none;
+    /*.goback{*/
+    /*    display: inline-block;*/
+    /*    !*width: 50px;*!*/
+    /*    !*height: 30px;*!*/
+    /*    border-radius: 5px;*/
+    /*    border:rgb(69, 218, 222) solid 1px;*/
+    /*    font-weight: bold;*/
+    /*    font-size: 120%;*/
+    /*    position: absolute;*/
+    /*    top: 5px;*/
+    /*    left: 5px;*/
+    /*    background-color: rgb(69, 218, 222);*/
+    /*    z-index: 999;*/
+    /*    padding: 5px;*/
+    /*    color: #eeeeee;*/
+    /*    outline:none;*/
 
 
 
-    }
+    /*}*/
 
     .page{
         width: 1200px;
@@ -324,6 +328,7 @@
         display: inline-block;
         padding: 0;
         margin: 0;
+        margin-top: 30px;
         position: relative;
         top: 50%;
         left: 50%;
